@@ -1,0 +1,127 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "proto/hackernews.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "HackerNewsService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/grpc_web_hacker_news.HackerNewsService/ListStories": {
+      "post": {
+        "operationId": "HackerNewsService_ListStories",
+        "responses": {
+          "200": {
+            "description": "A successful response.(streaming responses)",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "result": {
+                  "$ref": "#/definitions/grpc_web_hacker_newsListStoriesResponse"
+                },
+                "error": {
+                  "$ref": "#/definitions/rpcStatus"
+                }
+              },
+              "title": "Stream result of grpc_web_hacker_newsListStoriesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/grpc_web_hacker_newsListStoriesRequest"
+            }
+          }
+        ],
+        "tags": [
+          "HackerNewsService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "grpc_web_hacker_newsListStoriesRequest": {
+      "type": "object"
+    },
+    "grpc_web_hacker_newsListStoriesResponse": {
+      "type": "object",
+      "properties": {
+        "story": {
+          "$ref": "#/definitions/grpc_web_hacker_newsStory"
+        }
+      }
+    },
+    "grpc_web_hacker_newsStory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "score": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "title": {
+          "type": "string"
+        },
+        "by": {
+          "type": "string"
+        },
+        "time": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
