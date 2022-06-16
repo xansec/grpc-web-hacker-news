@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Running frontend application"
-cd app 
+cd ../app 
 yarn start
 
 

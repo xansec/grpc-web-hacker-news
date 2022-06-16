@@ -1,6 +1,6 @@
 #!/bin/bash
 
 echo "Running go server"
-cd server 
+cd ../server 
 go run main.go
 
